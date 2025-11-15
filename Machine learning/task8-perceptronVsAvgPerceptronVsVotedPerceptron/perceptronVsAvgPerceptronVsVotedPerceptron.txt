@@ -1,0 +1,121 @@
+Understanding Perceptron Variants
+
+This document explains three Perceptron-based algorithms used for binary classification:
+
+1. Standard Perceptron
+2. Voted Perceptron
+3. Average Perceptron
+
+Each algorithm is a linear classifier that separates data into two classes using a hyperplane. They differ in how they update and use weight vectors during training and prediction.
+
+------------------------------------------------------------
+1. Standard Perceptron
+
+Description:
+The original Perceptron algorithm introduced by Frank Rosenblatt in 1958. It maintains a single weight vector and updates it when a sample is misclassified.
+
+How It Works:
+- Initialize weights to zero
+- For each training sample:
+    - If prediction is incorrect:
+        w = w + y * x
+
+Advantages:
+- Simple and fast
+- Requires minimal memory
+- Works well on linearly separable data
+
+Disadvantages:
+- Fails if data is not linearly separable
+- Sensitive to noise
+- Final model depends on last updates
+
+Use Cases:
+- Educational purposes
+- Quick baseline
+- Clean, linearly separable datasets
+
+------------------------------------------------------------
+2. Voted Perceptron
+
+Description:
+Improves the standard version by storing multiple weight vectors and vote counts. Each vector votes during prediction.
+
+How It Works:
+- Maintain list of weight vectors and vote counts
+- On misclassification:
+    - Store current weight and vote count
+    - Update weights
+- During prediction:
+    - Each stored vector votes
+    - Final prediction is based on weighted majority
+
+Advantages:
+- More robust to noise
+- Better generalization
+- Captures training history
+
+Disadvantages:
+- Requires more memory
+- Slower prediction
+- More complex
+
+Use Cases:
+- Noisy datasets
+- Higher accuracy needs
+- Research and experimentation
+
+------------------------------------------------------------
+3. Average Perceptron
+
+Description:
+Simplifies Voted Perceptron by averaging all weight vectors seen during training. Improves generalization without storing multiple vectors.
+
+How It Works:
+- Initialize weights and cumulative sum
+- For each sample:
+    - Update weights if misclassified
+    - Add current weights to cumulative sum
+- Final model uses average of all weights
+
+Advantages:
+- More stable than standard Perceptron
+- Less memory than Voted Perceptron
+- Smooths noisy updates
+
+Disadvantages:
+- Assumes linear separability
+- Slightly slower training
+- Not suitable for multi-class without extension
+
+Use Cases:
+- Better generalization than standard Perceptron
+- Limited memory environments
+- Balanced trade-off between speed and accuracy
+
+------------------------------------------------------------
+Comparison Table
+
+| Feature               | Standard Perceptron | Voted Perceptron     | Average Perceptron   |
+|-----------------------|---------------------|-----------------------|-----------------------|
+| Weight Strategy       | Single final vector | Multiple + votes      | Average of all vectors|
+| Memory Usage          | Low                 | High                  | Moderate              |
+| Robustness to Noise   | Low                 | High                  | High                  |
+| Prediction Speed      | Fast                | Slower                | Fast                  |
+| Generalization        | Moderate            | Strong                | Strong                |
+| Implementation        | Simple              | Complex               | Moderate              |
+
+------------------------------------------------------------
+When to Use Which?
+
+- Use Standard Perceptron if:
+    - You need a fast, simple baseline
+    - Your data is clean and linearly separable
+
+- Use Voted Perceptron if:
+    - You want high accuracy and can afford more memory
+    - Your data has noise or borderline cases
+
+- Use Average Perceptron if:
+    - You want better generalization than standard Perceptron
+    - You want a balance between performance and simplicity
