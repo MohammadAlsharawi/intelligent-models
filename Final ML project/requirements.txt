@@ -1,0 +1,16 @@
+bank marketing
+1-data cleaning 
+2-EDA data analysis
+3- model -> linear : 1-svm 2- linear 3-multi 4-poly 5- logistic (regression)
+   model -> ensemble: 1- XGBoost 2-random forest (classification)
+   model -> clustering (classification)
+4-compare between results regression alone and classification alone
+5-plotting for all models
+
+*grid search
+*cross validation 
+*pca 
+*confussion matrix 
+*feature extraction , feature engineering , feature importance 
+
+
